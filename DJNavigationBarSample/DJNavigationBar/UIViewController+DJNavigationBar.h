@@ -46,9 +46,6 @@
 - (void)dj_setNeedsUpdateNavigationBarTintColor;
 - (void)dj_setNeedsUpdateNavigationBarEffect;
 
-- (void)dj_setNeedsUpdateNavigationTitleAlpha;
-- (void)dj_setNeedsUpdateNavigationTitleTintColor;
-
 - (void)dj_setNeedsUpdateNavigationShadowAlpha;
 - (void)dj_setNeedsUpdateNavigationShadowColor;
 

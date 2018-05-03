@@ -366,9 +366,6 @@
     [self updateNavigationBarAlphaForViewController:vc];
     [self updateNavigationBarTintColorForViewController:vc];
     
-    [self updateNavigationTitleAlphaForViewController:vc];
-    [self updateNavigationTitleTintColorForViewController:vc];
-
     [self updateNavigationShadowAlphaForViewController:vc];
     [self updateNavigationShadowColorForViewController:vc];
 }
@@ -394,17 +391,6 @@
 - (void)updateNavigationBarEffectForViewController:(UIViewController *)vc
 {
     self.navigationBar.effect = vc.dj_NavigationBarEffect;
-}
-
-- (void)updateNavigationTitleAlphaForViewController:(UIViewController *)vc
-{
-    self.navigationItem.titleView.alpha = vc.dj_NavigationTitleAlpha;
-    self.navigationItem.titleView.tintColor = vc.dj_NavigationTitleTintColor;
-}
-
-- (void)updateNavigationTitleTintColorForViewController:(UIViewController *)vc
-{
-    self.navigationItem.titleView.tintColor = vc.dj_NavigationTitleTintColor;
 }
 
 - (void)updateNavigationShadowAlphaForViewController:(UIViewController *)vc

@@ -235,24 +235,6 @@
     }
 }
 
-- (void)dj_setNeedsUpdateNavigationTitleAlpha
-{
-    if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])
-    {
-        DJNavigationController *nav = (DJNavigationController *)self.navigationController;
-        [nav updateNavigationTitleAlphaForViewController:self];
-    }
-}
-
-- (void)dj_setNeedsUpdateNavigationTitleTintColor
-{
-    if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])
-    {
-        DJNavigationController *nav = (DJNavigationController *)self.navigationController;
-        [nav updateNavigationTitleTintColorForViewController:self];
-    }
-}
-
 - (void)dj_setNeedsUpdateNavigationShadowAlpha
 {
     if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])

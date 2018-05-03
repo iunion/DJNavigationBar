@@ -19,10 +19,6 @@
 - (void)updateNavigationBarTintColorForViewController:(UIViewController *)vc;
 - (void)updateNavigationBarEffectForViewController:(UIViewController *)vc;
 
-// 刷新bar标题
-- (void)updateNavigationTitleAlphaForViewController:(UIViewController *)vc;
-- (void)updateNavigationTitleTintColorForViewController:(UIViewController *)vc;
-
 // 刷新bar阴影
 - (void)updateNavigationShadowAlphaForViewController:(UIViewController *)vc;
 - (void)updateNavigationShadowColorForViewController:(UIViewController *)vc;
