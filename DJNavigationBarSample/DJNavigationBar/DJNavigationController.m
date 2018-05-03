@@ -183,42 +183,55 @@
             if (shouldFake)
             {
                 [UIView performWithoutAnimation:^{
-                    self.navigationBar.effectView.alpha = 0;
-                    self.navigationBar.shadowLineImageView.alpha = 0;
+                    self.navigationBar.effectView.alpha = 0.0f;
+                    self.navigationBar.shadowLineImageView.alpha = 0.0f;
                     
-                    // from
+                    // fromVC
                     self.fromFakeBar.contentView.backgroundColor = from.dj_NavigationBarTintColor;
                     self.fromFakeBar.effect = from.dj_NavigationBarEffect;
-                    self.fromFakeBar.alpha = from.dj_NavigationBarAlpha == 0 ? 0.01:from.dj_NavigationBarAlpha;
-                    if (from.dj_NavigationBarAlpha == 0) {
-                        self.fromFakeBar.subviews[1].alpha = 0.01;
+                    self.fromFakeBar.alpha = from.dj_NavigationBarAlpha == 0 ? 0.01f : from.dj_NavigationBarAlpha;
+                    if (from.dj_NavigationBarAlpha == 0)
+                    {
+                        self.fromFakeBar.contentView.alpha = 0.01f;
                     }
                     self.fromFakeBar.frame = [self fakeBarFrameForViewController:from];
                     [from.view addSubview:self.fromFakeBar];
+                    
                     self.fromFakeShadow.alpha = from.dj_NavigationShadowAlpha;
+                    self.fromFakeShadow.backgroundColor = from.dj_NavigationShadowColor;
                     self.fromFakeShadow.frame = [self fakeShadowFrameWithBarFrame:self.fromFakeBar.frame];
                     [from.view addSubview:self.fromFakeShadow];
-                    // to
+                    
+                    // toVC
                     self.toFakeBar.contentView.backgroundColor = to.dj_NavigationBarTintColor;
                     self.toFakeBar.effect = to.dj_NavigationBarEffect;
                     self.toFakeBar.alpha = to.dj_NavigationBarAlpha;
                     self.toFakeBar.frame = [self fakeBarFrameForViewController:to];
                     [to.view addSubview:self.toFakeBar];
+                    
                     self.toFakeShadow.alpha = to.dj_NavigationShadowAlpha;
+                    self.toFakeShadow.backgroundColor = to.dj_NavigationShadowColor;
                     self.toFakeShadow.frame = [self fakeShadowFrameWithBarFrame:self.toFakeBar.frame];
                     [to.view addSubview:self.toFakeShadow];
                 }];
-            } else {
+            }
+            else
+            {
                 [self updateNavigationBarForController:viewController];
             }
-        } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-            if (context.isCancelled) {
+        } completion:^(id<UIViewControllerTransitionCoordinatorContext> _Nonnull context) {
+            if (context.isCancelled)
+            {
                 [self updateNavigationBarForController:from];
-            } else {
+            }
+            else
+            {
                 // 当 present 时 to 不等于 viewController
                 [self updateNavigationBarForController:viewController];
             }
-            if (to == viewController) {
+            
+            if (to == viewController)
+            {
                 [self clearFake];
             }
         }];
@@ -231,7 +244,7 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    NSCAssert(self.interactivePopGestureRecognizer.delegate == self, @"AHKNavigationController won't work correctly if you change interactivePopGestureRecognizer's delegate.");
+    NSCAssert(self.interactivePopGestureRecognizer.delegate == self, @"DJNavigationController won't work correctly if you change interactivePopGestureRecognizer's delegate.");
     
     self.duringPushAnimation = NO;
     self.duringPopAnimation = NO;
@@ -242,54 +255,78 @@
     }
 }
 
-- (UIVisualEffectView *)fromFakeBar {
-    if (!_fromFakeBar) {
+- (UIVisualEffectView *)fromFakeBar
+{
+    if (!_fromFakeBar)
+    {
         _fromFakeBar = [[UIVisualEffectView alloc] initWithEffect:DJNavigationBar_DefaultEffect];
     }
     return _fromFakeBar;
 }
 
-- (UIVisualEffectView *)toFakeBar {
-    if (!_toFakeBar) {
+- (UIVisualEffectView *)toFakeBar
+{
+    if (!_toFakeBar)
+    {
         _toFakeBar = [[UIVisualEffectView alloc] initWithEffect:DJNavigationBar_DefaultEffect];
     }
     return _toFakeBar;
 }
 
-- (UIImageView *)fromFakeShadow {
-    if (!_fromFakeShadow) {
+- (UIImageView *)fromFakeShadow
+{
+    if (!_fromFakeShadow)
+    {
         _fromFakeShadow = [[UIImageView alloc] initWithImage:self.navigationBar.shadowLineImageView.image];
         _fromFakeShadow.backgroundColor = self.navigationBar.shadowLineImageView.backgroundColor;
     }
     return _fromFakeShadow;
 }
 
-- (UIImageView *)toFakeShadow {
-    if (!_toFakeShadow) {
+- (UIImageView *)toFakeShadow
+{
+    if (!_toFakeShadow)
+    {
         _toFakeShadow = [[UIImageView alloc] initWithImage:self.navigationBar.shadowLineImageView.image];
         _toFakeShadow.backgroundColor = self.navigationBar.shadowLineImageView.backgroundColor;
     }
     return _toFakeShadow;
 }
 
-- (void)clearFake {
-    [self.fromFakeBar removeFromSuperview];
-    [self.toFakeBar removeFromSuperview];
-    [self.fromFakeShadow removeFromSuperview];
-    [self.toFakeShadow removeFromSuperview];
+- (void)clearFake
+{
+    if (self.fromFakeBar.superview)
+    {
+        [self.fromFakeBar removeFromSuperview];
+    }
+    if (self.toFakeBar.superview)
+    {
+        [self.toFakeBar removeFromSuperview];
+    }
+    if (self.fromFakeShadow)
+    {
+        [self.fromFakeShadow removeFromSuperview];
+    }
+    if (self.toFakeShadow.superview)
+    {
+        [self.toFakeShadow removeFromSuperview];
+    }
+    
     self.fromFakeBar = nil;
     self.toFakeBar = nil;
     self.fromFakeShadow = nil;
     self.toFakeShadow = nil;
 }
 
-- (CGRect)fakeBarFrameForViewController:(UIViewController *)vc {
+- (CGRect)fakeBarFrameForViewController:(UIViewController *)vc
+{
     CGRect frame = [self.navigationBar.effectView convertRect:self.navigationBar.effectView.frame toView:vc.view];
     frame.origin.x = vc.view.frame.origin.x;
     return frame;
 }
 
-- (CGRect)fakeShadowFrameWithBarFrame:(CGRect)frame {
+- (CGRect)fakeShadowFrameWithBarFrame:(CGRect)frame
+{
     return CGRectMake(frame.origin.x, frame.size.height + frame.origin.y, frame.size.width, 0.5);
 }
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma mark - NavigationBar
+
 @interface UIViewController (DJNavigationBar)
 
 // UIBarStyle
@@ -48,6 +50,5 @@
 
 - (void)dj_setNeedsUpdateNavigationShadowAlpha;
 - (void)dj_setNeedsUpdateNavigationShadowColor;
-
 
 @end
