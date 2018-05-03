@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5A50415220944413004E1E9E /* DJNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A50415120944413004E1E9E /* DJNavigationBar.m */; };
+		5A50415620944B9A004E1E9E /* DJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A50415520944B9A004E1E9E /* DJNavigationController.m */; };
+		5A50415920944E82004E1E9E /* UIViewController+DJNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A50415820944E82004E1E9E /* UIViewController+DJNavigationBar.m */; };
+		5A98C478209428910042BB5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A98C477209428910042BB5F /* AppDelegate.m */; };
+		5A98C480209428940042BB5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A98C47F209428940042BB5F /* Assets.xcassets */; };
+		5A98C483209428940042BB5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A98C481209428940042BB5F /* LaunchScreen.storyboard */; };
+		5A98C486209428940042BB5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A98C485209428940042BB5F /* main.m */; };
+		5A98C490209428940042BB5F /* DJNavigationBarSampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A98C48F209428940042BB5F /* DJNavigationBarSampleUITests.m */; };
+		5ACBFF052099E2FA00BB7A8C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ACBFF032099E2FA00BB7A8C /* ViewController.m */; };
+		5ACBFF062099E2FA00BB7A8C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ACBFF042099E2FA00BB7A8C /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5A98C48C209428940042BB5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A98C46B209428910042BB5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A98C472209428910042BB5F;
+			remoteInfo = DJNavigationBarSample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5A50415020944413004E1E9E /* DJNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJNavigationBar.h; sourceTree = "<group>"; };
+		5A50415120944413004E1E9E /* DJNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJNavigationBar.m; sourceTree = "<group>"; };
+		5A50415420944B9A004E1E9E /* DJNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJNavigationController.h; sourceTree = "<group>"; };
+		5A50415520944B9A004E1E9E /* DJNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJNavigationController.m; sourceTree = "<group>"; };
+		5A50415720944E82004E1E9E /* UIViewController+DJNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DJNavigationBar.h"; sourceTree = "<group>"; };
+		5A50415820944E82004E1E9E /* UIViewController+DJNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DJNavigationBar.m"; sourceTree = "<group>"; };
+		5A98C473209428910042BB5F /* DJNavigationBarSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJNavigationBarSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A98C476209428910042BB5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5A98C477209428910042BB5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5A98C47F209428940042BB5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5A98C482209428940042BB5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5A98C484209428940042BB5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A98C485209428940042BB5F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5A98C48B209428940042BB5F /* DJNavigationBarSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DJNavigationBarSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A98C48F209428940042BB5F /* DJNavigationBarSampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJNavigationBarSampleUITests.m; sourceTree = "<group>"; };
+		5A98C491209428940042BB5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ACBFF022099E2FA00BB7A8C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5ACBFF032099E2FA00BB7A8C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5ACBFF042099E2FA00BB7A8C /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		5ACBFF08209AE3FE00BB7A8C /* DJNavigationBarDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJNavigationBarDefine.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5A98C470209428910042BB5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A98C488209428940042BB5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5A50414F20944383004E1E9E /* DJNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				5ACBFF08209AE3FE00BB7A8C /* DJNavigationBarDefine.h */,
+				5A50415020944413004E1E9E /* DJNavigationBar.h */,
+				5A50415120944413004E1E9E /* DJNavigationBar.m */,
+				5A50415420944B9A004E1E9E /* DJNavigationController.h */,
+				5A50415520944B9A004E1E9E /* DJNavigationController.m */,
+				5A50415720944E82004E1E9E /* UIViewController+DJNavigationBar.h */,
+				5A50415820944E82004E1E9E /* UIViewController+DJNavigationBar.m */,
+			);
+			path = DJNavigationBar;
+			sourceTree = "<group>";
+		};
+		5A98C46A209428910042BB5F = {
+			isa = PBXGroup;
+			children = (
+				5A50414F20944383004E1E9E /* DJNavigationBar */,
+				5A98C475209428910042BB5F /* DJNavigationBarSample */,
+				5A98C48E209428940042BB5F /* DJNavigationBarSampleUITests */,
+				5A98C474209428910042BB5F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5A98C474209428910042BB5F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5A98C473209428910042BB5F /* DJNavigationBarSample.app */,
+				5A98C48B209428940042BB5F /* DJNavigationBarSampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5A98C475209428910042BB5F /* DJNavigationBarSample */ = {
+			isa = PBXGroup;
+			children = (
+				5A98C476209428910042BB5F /* AppDelegate.h */,
+				5A98C477209428910042BB5F /* AppDelegate.m */,
+				5ACBFF022099E2FA00BB7A8C /* ViewController.h */,
+				5ACBFF032099E2FA00BB7A8C /* ViewController.m */,
+				5ACBFF042099E2FA00BB7A8C /* ViewController.xib */,
+				5A98C47F209428940042BB5F /* Assets.xcassets */,
+				5A98C481209428940042BB5F /* LaunchScreen.storyboard */,
+				5A98C484209428940042BB5F /* Info.plist */,
+				5A98C485209428940042BB5F /* main.m */,
+			);
+			path = DJNavigationBarSample;
+			sourceTree = "<group>";
+		};
+		5A98C48E209428940042BB5F /* DJNavigationBarSampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5A98C48F209428940042BB5F /* DJNavigationBarSampleUITests.m */,
+				5A98C491209428940042BB5F /* Info.plist */,
+			);
+			path = DJNavigationBarSampleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5A98C472209428910042BB5F /* DJNavigationBarSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A98C494209428940042BB5F /* Build configuration list for PBXNativeTarget "DJNavigationBarSample" */;
+			buildPhases = (
+				5A98C46F209428910042BB5F /* Sources */,
+				5A98C470209428910042BB5F /* Frameworks */,
+				5A98C471209428910042BB5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DJNavigationBarSample;
+			productName = DJNavigationBarSample;
+			productReference = 5A98C473209428910042BB5F /* DJNavigationBarSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5A98C48A209428940042BB5F /* DJNavigationBarSampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A98C497209428940042BB5F /* Build configuration list for PBXNativeTarget "DJNavigationBarSampleUITests" */;
+			buildPhases = (
+				5A98C487209428940042BB5F /* Sources */,
+				5A98C488209428940042BB5F /* Frameworks */,
+				5A98C489209428940042BB5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A98C48D209428940042BB5F /* PBXTargetDependency */,
+			);
+			name = DJNavigationBarSampleUITests;
+			productName = DJNavigationBarSampleUITests;
+			productReference = 5A98C48B209428940042BB5F /* DJNavigationBarSampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5A98C46B209428910042BB5F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = DennisDeng;
+				TargetAttributes = {
+					5A98C472209428910042BB5F = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					5A98C48A209428940042BB5F = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = 5A98C472209428910042BB5F;
+					};
+				};
+			};
+			buildConfigurationList = 5A98C46E209428910042BB5F /* Build configuration list for PBXProject "DJNavigationBarSample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5A98C46A209428910042BB5F;
+			productRefGroup = 5A98C474209428910042BB5F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5A98C472209428910042BB5F /* DJNavigationBarSample */,
+				5A98C48A209428940042BB5F /* DJNavigationBarSampleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5A98C471209428910042BB5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A98C483209428940042BB5F /* LaunchScreen.storyboard in Resources */,
+				5ACBFF062099E2FA00BB7A8C /* ViewController.xib in Resources */,
+				5A98C480209428940042BB5F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A98C489209428940042BB5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5A98C46F209428910042BB5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ACBFF052099E2FA00BB7A8C /* ViewController.m in Sources */,
+				5A50415920944E82004E1E9E /* UIViewController+DJNavigationBar.m in Sources */,
+				5A50415620944B9A004E1E9E /* DJNavigationController.m in Sources */,
+				5A98C486209428940042BB5F /* main.m in Sources */,
+				5A98C478209428910042BB5F /* AppDelegate.m in Sources */,
+				5A50415220944413004E1E9E /* DJNavigationBar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A98C487209428940042BB5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A98C490209428940042BB5F /* DJNavigationBarSampleUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5A98C48D209428940042BB5F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5A98C472209428910042BB5F /* DJNavigationBarSample */;
+			targetProxy = 5A98C48C209428940042BB5F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5A98C481209428940042BB5F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A98C482209428940042BB5F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5A98C492209428940042BB5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5A98C493209428940042BB5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5A98C495209428940042BB5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DJNavigationBarSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = DJ.DJNavigationBarSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		5A98C496209428940042BB5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DJNavigationBarSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = DJ.DJNavigationBarSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		5A98C498209428940042BB5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DJNavigationBarSampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = DJ.DJNavigationBarSampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DJNavigationBarSample;
+			};
+			name = Debug;
+		};
+		5A98C499209428940042BB5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DJNavigationBarSampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = DJ.DJNavigationBarSampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DJNavigationBarSample;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5A98C46E209428910042BB5F /* Build configuration list for PBXProject "DJNavigationBarSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A98C492209428940042BB5F /* Debug */,
+				5A98C493209428940042BB5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A98C494209428940042BB5F /* Build configuration list for PBXNativeTarget "DJNavigationBarSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A98C495209428940042BB5F /* Debug */,
+				5A98C496209428940042BB5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A98C497209428940042BB5F /* Build configuration list for PBXNativeTarget "DJNavigationBarSampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A98C498209428940042BB5F /* Debug */,
+				5A98C499209428940042BB5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5A98C46B209428910042BB5F /* Project object */;
+}

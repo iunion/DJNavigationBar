@@ -1,0 +1,25 @@
+//
+//  DJNavigationBar.h
+//  DJNavigationBarSample
+//
+//  Created by DJ on 2018/4/28.
+//  Copyright © 2018年 DennisDeng. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface DJNavigationBar : UINavigationBar
+// bar背景蒙层
+@property (nonatomic, strong, readonly) UIVisualEffectView *effectView;
+// 蒙层效果
+// The effect is either a UIBlurEffect or a UIVibrancyEffect.
+@property (nullable, nonatomic, strong) UIVisualEffect *effect;
+// 阴影线条
+@property (nonatomic, strong, readonly) UIImageView *shadowLineImageView;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
