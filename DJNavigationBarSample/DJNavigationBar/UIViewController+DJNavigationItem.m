@@ -1,0 +1,326 @@
+//
+//  UIViewController+DJNavigationItem.m
+//  DJNavigationBarSample
+//
+//  Created by DJ on 2018/5/3.
+//Copyright © 2018年 DennisDeng. All rights reserved.
+//
+
+#import "UIViewController+DJNavigationItem.h"
+#import <objc/runtime.h>
+#import "DJNavigationBarDefine.h"
+#import "DJNavigationTitleLabel.h"
+#import "UIViewController+DJNavigationBar.h"
+
+@implementation UIViewController (DJNavigationItem)
+
+- (CGFloat)dj_NavigationTitleAlpha
+{
+    id obj = objc_getAssociatedObject(self, _cmd);
+    if (self.dj_NavigationTitleHidden)
+    {
+        return 0.0f;
+    }
+    return obj ? [obj doubleValue] : 1.0f;
+}
+
+- (void)setDj_NavigationTitleAlpha:(CGFloat)alpha
+{
+    objc_setAssociatedObject(self, @selector(dj_NavigationTitleAlpha), @(alpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)dj_NavigationTitleHidden
+{
+    id obj = objc_getAssociatedObject(self, _cmd);
+    return obj ? [obj boolValue] : NO;
+}
+
+- (void)setDj_NavigationTitleHidden:(BOOL)hidden
+{
+    objc_setAssociatedObject(self, @selector(dj_NavigationTitleHidden), @(hidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)dj_NavigationTitleTintColor
+{
+    if (self.dj_NavigationTitleHidden)
+    {
+        return UIColor.clearColor;
+    }
+    
+    id obj = objc_getAssociatedObject(self, _cmd);
+    if (obj)
+    {
+        return obj;
+    }
+    
+    return [UINavigationBar appearance].barStyle == UIBarStyleDefault ? [UIColor blackColor]: [UIColor whiteColor];
+}
+
+- (void)setDj_NavigationTitleTintColor:(UIColor *)tintColor
+{
+    objc_setAssociatedObject(self, @selector(dj_NavigationTitleTintColor), tintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)dj_NavigationItemTintColor
+{
+    id obj = objc_getAssociatedObject(self, _cmd);
+    if (obj)
+    {
+        return obj;
+    }
+    
+    return [UINavigationBar appearance].barStyle == UIBarStyleDefault ? [UIColor blackColor]: [UIColor whiteColor];
+}
+
+- (void)setDj_NavigationItemTintColor:(UIColor *)color
+{
+    objc_setAssociatedObject(self, @selector(dj_NavigationItemTintColor), color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
+#pragma mark - Actions
+
+- (DJNavigationTitleLabel *)dj_getNavigationBarTitleLabel
+{
+    DJNavigationTitleLabel *titleLabel = nil;
+    UIView *view = self.navigationItem.titleView;
+    
+    if ([view isKindOfClass:[DJNavigationTitleLabel class]])
+    {
+        titleLabel = (DJNavigationTitleLabel *)view;
+    }
+    else
+    {
+        titleLabel = [[DJNavigationTitleLabel alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
+        titleLabel.textColor = self.dj_NavigationTitleTintColor;
+        
+        self.navigationItem.titleView = titleLabel;
+    }
+    
+    return titleLabel;
+}
+
+- (void)dj_setNavigationBarTitle:(NSString *)title
+{
+    // tab的一级view不要设置title，否则tab文本重合
+    // 可后续清空
+    self.title = title;
+    
+    DJNavigationTitleLabel *titleLabel = [self dj_getNavigationBarTitleLabel];
+    
+    // 设置标题
+    titleLabel.text = title;
+}
+
+- (void)dj_setNeedsUpdateNavigationTitleAlpha
+{
+    DJNavigationTitleLabel *titleLabel = [self dj_getNavigationBarTitleLabel];
+    titleLabel.alpha = self.dj_NavigationTitleAlpha;
+}
+
+- (void)dj_setNeedsUpdateNavigationTitleTintColor
+{
+    DJNavigationTitleLabel *titleLabel = [self dj_getNavigationBarTitleLabel];
+    titleLabel.textColor = self.dj_NavigationTitleTintColor;
+}
+
+- (UIBarButtonItem *)makeBarButton:(NSString *)title image:(id)image toucheEvent:(SEL)selector
+{
+// 直接使用UIBarButtonItem
+//    if (selector != nil)
+//    {
+//        UIBarButtonItem * buttonItem = nil;
+//        if (title != nil)
+//        {
+//            buttonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:selector];
+//        }
+//        else if (imageName)
+//        {
+//            buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName] style:UIBarButtonItemStylePlain target:self action:selector];
+//        }
+//
+//        //buttonItem.tintColor = [UIColor whiteColor];
+//
+//        return buttonItem;
+//    }
+//    else
+//    {
+//        return nil;
+//    }
+//
+//    return nil;
+    
+    
+    if (selector != nil)
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+        btn.exclusiveTouch = YES;
+        
+        btn.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+        btn.tintColor = self.dj_NavigationItemTintColor;
+        
+        if (title != nil)
+        {
+            btn.titleLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+            
+            CGSize size = [title boundingRectWithSize:CGSizeMake(100.0f, 44.0f) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:btn.titleLabel.font} context:nil].size;
+            btn.frame = CGRectMake(0, 0, size.width, size.height);
+            [btn setTitle:title forState:UIControlStateNormal];
+            //[btn setTitleColor:self.dj_NavigationItemTintColor forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        }
+        else if (image)
+        {
+            UIImage *itemImage = nil;
+            
+            if ([image isKindOfClass:[NSString class]])
+            {
+                itemImage = [UIImage imageNamed:image];
+            }
+            else if ([image isKindOfClass:[UIImage class]])
+            {
+                itemImage = image;
+            }
+            
+            if (itemImage)
+            {
+                // Set the rendering mode to respect tint color
+                UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];;
+                btn.frame = CGRectMake(0, 0, itemImage.size.width, itemImage.size.height);
+                [btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
+            }
+        }
+        
+        UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        return buttonItem;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (void)dj_setNavigationLeftItemTintColor:(UIColor *)tintColor
+{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.leftBarButtonItems)
+    {
+        UIButton *btn = (UIButton *)buttonItem.customView;
+        
+        btn.tintColor = tintColor;
+    }
+}
+
+- (void)dj_setNavigationRightItemTintColor:(UIColor *)tintColor
+{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems)
+    {
+        UIButton *btn = (UIButton *)buttonItem.customView;
+        
+        btn.tintColor = tintColor;
+    }
+}
+
+- (void)dj_setNeedsUpdateNavigationItemTintColor
+{
+    [self dj_setNavigationLeftItemTintColor:self.dj_NavigationItemTintColor];
+    [self dj_setNavigationRightItemTintColor:self.dj_NavigationItemTintColor];
+}
+
+- (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightItemTitle:(NSString *)rTitle rightItemImage:(id)rImage rightToucheEvent:(SEL)rSelector
+{
+    [self dj_setNavigationBarTitle:title];
+    
+    [self dj_setNavigationWithTitleView:nil barTintColor:barTintColor leftItemTitle:lTitle leftItemImage:lImage leftToucheEvent:lSelector rightItemTitle:rTitle rightItemImage:rImage rightToucheEvent:rSelector];
+}
+
+- (void)dj_setNavigationWithTitleView:(UIView *)titleView barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightItemTitle:(NSString *)rTitle rightItemImage:(id)rImage rightToucheEvent:(SEL)rSelector
+{
+    [self.navigationItem setHidesBackButton:YES];
+    
+    // 设置标题
+    if (titleView)
+    {
+        self.navigationItem.titleView = titleView;
+    }
+    
+    if (barTintColor)
+    {
+        self.dj_NavigationBarTintColor = barTintColor;
+        [self dj_setNeedsUpdateNavigationBarTintColor];
+    }
+    
+    // 设置左按键
+    UIBarButtonItem *lButtonItem = [self makeBarButton:lTitle image:lImage toucheEvent:lSelector];
+    self.navigationItem.leftBarButtonItem = lButtonItem;
+    
+    // 设置右按键
+    UIBarButtonItem *rButtonItem = [self makeBarButton:rTitle image:rImage toucheEvent:rSelector];
+    self.navigationItem.rightBarButtonItem = rButtonItem;
+}
+
+- (UIButton *)dj_getNavigationLeftItemAtIndex:(NSUInteger)index
+{
+    if (index < self.navigationItem.leftBarButtonItems.count)
+    {
+        UIBarButtonItem *buttonItem = [self.navigationItem.leftBarButtonItems objectAtIndex:index];
+        return (UIButton *)buttonItem.customView;
+    }
+    else
+    {
+        UIBarButtonItem *buttonItem = self.navigationItem.leftBarButtonItem;
+        if ( buttonItem != nil)
+        {
+            return (UIButton *)buttonItem.customView;
+        }
+        
+        return nil;
+    }
+}
+
+- (UIButton *)dj_getNavigationRightItemAtIndex:(NSUInteger)index
+{
+    if (index < self.navigationItem.rightBarButtonItems.count)
+    {
+        UIBarButtonItem *buttonItem = [self.navigationItem.rightBarButtonItems objectAtIndex:index];
+        return (UIButton *)buttonItem.customView;
+    }
+    else
+    {
+        UIBarButtonItem *buttonItem = self.navigationItem.rightBarButtonItem;
+        if ( buttonItem != nil)
+        {
+            return (UIButton *)buttonItem.customView;
+        }
+        
+        return nil;
+    }
+}
+
+- (void)dj_setNavigationLeftItemEnable:(BOOL)enable
+{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.leftBarButtonItems)
+    {
+        UIButton *btn = (UIButton *)buttonItem.customView;
+        
+        btn.enabled = enable;
+    }
+}
+
+- (void)dj_setNavigationRightItemEnable:(BOOL)enable
+{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems)
+    {
+        UIButton *btn = (UIButton *)buttonItem.customView;
+        
+        btn.enabled = enable;
+    }
+}
+
+- (void)dj_setNavigationItemEnable:(BOOL)enable
+{
+    [self dj_setNavigationLeftItemEnable:enable];
+    [self dj_setNavigationRightItemEnable:enable];
+}
+
+@end

@@ -91,53 +91,6 @@
     objc_setAssociatedObject(self, @selector(dj_NavigationBarEffect), navigationBarEffect, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)dj_NavigationTitleAlpha
-{
-    id obj = objc_getAssociatedObject(self, _cmd);
-    if (self.dj_NavigationTitleHidden)
-    {
-        return 0.0f;
-    }
-    return obj ? [obj doubleValue] : 1.0f;
-}
-
-- (void)setDj_NavigationTitleAlpha:(CGFloat)alpha
-{
-    objc_setAssociatedObject(self, @selector(dj_NavigationTitleAlpha), @(alpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)dj_NavigationTitleHidden
-{
-    id obj = objc_getAssociatedObject(self, _cmd);
-    return obj ? [obj boolValue] : NO;
-}
-
-- (void)setDj_NavigationTitleHidden:(BOOL)hidden
-{
-    objc_setAssociatedObject(self, @selector(dj_NavigationTitleHidden), @(hidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (UIColor *)dj_NavigationTitleTintColor
-{
-    if (self.dj_NavigationTitleHidden)
-    {
-        return UIColor.clearColor;
-    }
-    
-    id obj = objc_getAssociatedObject(self, _cmd);
-    if (obj)
-    {
-        return obj;
-    }
-    
-    return [UINavigationBar appearance].barStyle == UIBarStyleDefault ? [UIColor blackColor]: [UIColor whiteColor];
-}
-
-- (void)setDj_NavigationTitleTintColor:(UIColor *)tintColor
-{
-    objc_setAssociatedObject(self, @selector(dj_NavigationTitleTintColor), tintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 - (CGFloat)dj_NavigationShadowAlpha
 {
     return  self.dj_NavigationShadowHidden ? 0.0f : self.dj_NavigationBarAlpha;
@@ -185,6 +138,17 @@
 {
     objc_setAssociatedObject(self, @selector(dj_CanBackInteractive), @(interactive), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+- (CGFloat)dj_NavigationBarTranslationY
+{
+    return self.navigationController.navigationBar.transform.ty;
+}
+
+- (void)setDj_NavigationBarTranslationY:(CGFloat)translationY
+{
+    self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0, translationY);
+}
+
 
 
 #pragma mark -
@@ -252,6 +216,5 @@
         [nav updateNavigationShadowColorForViewController:self];
     }
 }
-
 
 @end

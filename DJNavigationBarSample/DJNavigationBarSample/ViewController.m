@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "UIViewController+DJNavigationBar.h"
 #import "DJNavigationBarDefine.h"
+#import "UIViewController+DJNavigationBar.h"
+#import "UIViewController+DJNavigationItem.h"
 
 @interface ViewController ()
 
@@ -47,11 +48,22 @@
 //    self.extendedLayoutIncludesOpaqueBars = NO;
 //    self.modalPresentationCapturesStatusBarAppearance = NO;
     
-    self.title = @"DJNavigationBar";
+    self.dj_NavigationItemTintColor = [UIColor yellowColor];
+    //[self dj_setNavigationWithTitle:@"DJNavigationBar" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:@"navigationbar_setup_icon" rightToucheEvent:@selector(rightClick)];
+    [self dj_setNavigationWithTitle:@"DJNavigationBar" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:@"TT" rightItemImage:@"navigationbar_setup_icon" rightToucheEvent:@selector(rightClick)];
+//    UIButton *btn = [self getNavigationRightItemAtIndex:0];
+//    btn.tintColor = [UIColor redColor];
+    //self.title = @"DJNavigationBar";
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 1000);
 
     self.blurEffectSwitch.on = YES;
+    
+}
+
+- (void)rightClick
+{
+    NSLog(@"rightClick");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,11 +76,20 @@
     self.alphaComponent.text = [NSString stringWithFormat:@"%.2f", sender.value];
     self.dj_NavigationBarAlpha = sender.value;
     [self dj_setNeedsUpdateNavigationBarAlpha];
+    
+    self.dj_NavigationTitleTintColor = [UIColor redColor];
+    self.dj_NavigationTitleAlpha = sender.value;
+    [self dj_setNeedsUpdateNavigationTitleAlpha];
+    [self dj_setNeedsUpdateNavigationTitleTintColor];
+    
+    self.dj_NavigationItemTintColor = [UIColor redColor];
+    [self dj_setNeedsUpdateNavigationItemTintColor];
 }
 
 - (IBAction)pushToNext:(id)sender
 {
     UIViewController *vc = [self createDemoViewController];
+    [vc setNeedsStatusBarAppearanceUpdate];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

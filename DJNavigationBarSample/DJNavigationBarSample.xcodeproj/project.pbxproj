@@ -17,6 +17,10 @@
 		5A98C490209428940042BB5F /* DJNavigationBarSampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A98C48F209428940042BB5F /* DJNavigationBarSampleUITests.m */; };
 		5ACBFF052099E2FA00BB7A8C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ACBFF032099E2FA00BB7A8C /* ViewController.m */; };
 		5ACBFF062099E2FA00BB7A8C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ACBFF042099E2FA00BB7A8C /* ViewController.xib */; };
+		870B3F2F20B5561F00CDEBF1 /* DJNavigationTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 870B3F2D20B5561F00CDEBF1 /* DJNavigationTitleLabel.m */; };
+		870B3F3220B57F5200CDEBF1 /* navigationbar_setup_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 870B3F3020B57F5200CDEBF1 /* navigationbar_setup_icon@3x.png */; };
+		870B3F3320B57F5200CDEBF1 /* navigationbar_setup_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 870B3F3120B57F5200CDEBF1 /* navigationbar_setup_icon@2x.png */; };
+		870B3F5820B65EBE00CDEBF1 /* UIViewController+DJNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 870B3F5720B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,12 @@
 		5ACBFF032099E2FA00BB7A8C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5ACBFF042099E2FA00BB7A8C /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		5ACBFF08209AE3FE00BB7A8C /* DJNavigationBarDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJNavigationBarDefine.h; sourceTree = "<group>"; };
+		870B3F2D20B5561F00CDEBF1 /* DJNavigationTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJNavigationTitleLabel.m; sourceTree = "<group>"; };
+		870B3F2E20B5561F00CDEBF1 /* DJNavigationTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJNavigationTitleLabel.h; sourceTree = "<group>"; };
+		870B3F3020B57F5200CDEBF1 /* navigationbar_setup_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_setup_icon@3x.png"; sourceTree = "<group>"; };
+		870B3F3120B57F5200CDEBF1 /* navigationbar_setup_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_setup_icon@2x.png"; sourceTree = "<group>"; };
+		870B3F5620B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DJNavigationItem.h"; sourceTree = "<group>"; };
+		870B3F5720B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DJNavigationItem.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,13 +83,19 @@
 		5A50414F20944383004E1E9E /* DJNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
+				870B3F3120B57F5200CDEBF1 /* navigationbar_setup_icon@2x.png */,
+				870B3F3020B57F5200CDEBF1 /* navigationbar_setup_icon@3x.png */,
 				5ACBFF08209AE3FE00BB7A8C /* DJNavigationBarDefine.h */,
 				5A50415020944413004E1E9E /* DJNavigationBar.h */,
 				5A50415120944413004E1E9E /* DJNavigationBar.m */,
+				870B3F2E20B5561F00CDEBF1 /* DJNavigationTitleLabel.h */,
+				870B3F2D20B5561F00CDEBF1 /* DJNavigationTitleLabel.m */,
 				5A50415420944B9A004E1E9E /* DJNavigationController.h */,
 				5A50415520944B9A004E1E9E /* DJNavigationController.m */,
 				5A50415720944E82004E1E9E /* UIViewController+DJNavigationBar.h */,
 				5A50415820944E82004E1E9E /* UIViewController+DJNavigationBar.m */,
+				870B3F5620B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.h */,
+				870B3F5720B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.m */,
 			);
 			path = DJNavigationBar;
 			sourceTree = "<group>";
@@ -210,6 +226,8 @@
 			files = (
 				5A98C483209428940042BB5F /* LaunchScreen.storyboard in Resources */,
 				5ACBFF062099E2FA00BB7A8C /* ViewController.xib in Resources */,
+				870B3F3320B57F5200CDEBF1 /* navigationbar_setup_icon@2x.png in Resources */,
+				870B3F3220B57F5200CDEBF1 /* navigationbar_setup_icon@3x.png in Resources */,
 				5A98C480209428940042BB5F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +247,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ACBFF052099E2FA00BB7A8C /* ViewController.m in Sources */,
+				870B3F5820B65EBE00CDEBF1 /* UIViewController+DJNavigationItem.m in Sources */,
+				870B3F2F20B5561F00CDEBF1 /* DJNavigationTitleLabel.m in Sources */,
 				5A50415920944E82004E1E9E /* UIViewController+DJNavigationBar.m in Sources */,
 				5A50415620944B9A004E1E9E /* DJNavigationController.m in Sources */,
 				5A98C486209428940042BB5F /* main.m in Sources */,

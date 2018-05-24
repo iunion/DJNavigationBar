@@ -24,13 +24,6 @@
 // NavigationBar背景色
 @property (nonatomic, strong) UIVisualEffect *dj_NavigationBarEffect;
 
-// Title透明度
-@property (nonatomic, assign) CGFloat dj_NavigationTitleAlpha;
-// Title是否隐藏
-@property (nonatomic, assign) BOOL dj_NavigationTitleHidden;
-// Title颜色
-@property (nonatomic, strong) UIColor *dj_NavigationTitleTintColor;
-
 // NavigationBar阴影线条透明度
 @property (nonatomic, assign, readonly) CGFloat dj_NavigationShadowAlpha;
 // NavigationBar阴影线条是否隐藏
@@ -41,6 +34,10 @@
 // 是否支持右滑返回
 @property (nonatomic, assign) BOOL dj_CanBackInteractive;
 
+// 垂直方向偏移
+@property (nonatomic, assign) CGFloat dj_NavigationBarTranslationY;
+
+// NavigationBar
 - (void)dj_setNeedsUpdateNavigationBar;
 - (void)dj_setNeedsUpdateNavigationBarStyle;
 
