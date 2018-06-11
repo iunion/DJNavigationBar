@@ -11,6 +11,8 @@
 #import "DJNavigationBarDefine.h"
 #import "DJNavigationTitleLabel.h"
 #import "UIViewController+DJNavigationBar.h"
+#import "UIButton+DJEdgeInsets.h"
+#import "NSDictionary+Category.h"
 
 @implementation UIViewController (DJNavigationItem)
 
@@ -59,6 +61,32 @@
 - (void)setDj_NavigationTitleTintColor:(UIColor *)tintColor
 {
     objc_setAssociatedObject(self, @selector(dj_NavigationTitleTintColor), tintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)dj_NavigationItemAlpha
+{
+    id obj = objc_getAssociatedObject(self, _cmd);
+    if (self.dj_NavigationItemHidden)
+    {
+        return 0.0f;
+    }
+    return obj ? [obj doubleValue] : 1.0f;
+}
+
+- (void)setDj_NavigationItemAlpha:(CGFloat)alpha
+{
+    objc_setAssociatedObject(self, @selector(dj_NavigationItemAlpha), @(alpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)dj_NavigationItemHidden
+{
+    id obj = objc_getAssociatedObject(self, _cmd);
+    return obj ? [obj boolValue] : NO;
+}
+
+- (void)setDj_NavigationItemHidden:(BOOL)hidden
+{
+    objc_setAssociatedObject(self, @selector(dj_NavigationItemHidden), @(hidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UIColor *)dj_NavigationItemTintColor
@@ -124,7 +152,7 @@
     titleLabel.textColor = self.dj_NavigationTitleTintColor;
 }
 
-- (UIBarButtonItem *)makeBarButton:(NSString *)title image:(id)image toucheEvent:(SEL)selector
+- (UIBarButtonItem *)makeBarButton:(NSString *)title image:(id)image toucheEvent:(SEL)selector buttonEdgeInsetsStyle:(DJButtonEdgeInsetsStyle)edgeInsetsStyle imageTitleGap:(CGFloat)gap
 {
 // 直接使用UIBarButtonItem
 //    if (selector != nil)
@@ -150,6 +178,10 @@
 //
 //    return nil;
     
+    if (edgeInsetsStyle > DJButtonEdgeInsetsStyleImageRight)
+    {
+        edgeInsetsStyle = DJButtonEdgeInsetsStyleImageLeft;
+    }
     
     if (selector != nil)
     {
@@ -169,6 +201,33 @@
             [btn setTitle:title forState:UIControlStateNormal];
             //[btn setTitleColor:self.dj_NavigationItemTintColor forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+            
+            if (image)
+            {
+                UIImage *itemImage = nil;
+                
+                if ([image isKindOfClass:[NSString class]])
+                {
+                    itemImage = [UIImage imageNamed:image];
+                }
+                else if ([image isKindOfClass:[UIImage class]])
+                {
+                    itemImage = image;
+                }
+                
+                if (itemImage)
+                {
+                    // Set the rendering mode to respect tint color
+                    UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                    CGFloat width = itemImage.size.width+size.width+gap;
+                    CGFloat height = itemImage.size.height>size.height ? itemImage.size.height  : size.height;
+                    btn.frame = CGRectMake(0, 0, width, height);
+                    [btn setImage:tintItemImage forState:UIControlStateNormal];
+                    [btn setBackgroundImage:nil forState:UIControlStateNormal];
+                    
+                    [btn bm_layoutButtonWithEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap];
+                }
+            }
         }
         else if (image)
         {
@@ -189,6 +248,7 @@
                 UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];;
                 btn.frame = CGRectMake(0, 0, itemImage.size.width, itemImage.size.height);
                 [btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
+                [btn setImage:nil forState:UIControlStateNormal];
             }
         }
         
@@ -199,6 +259,32 @@
     {
         return nil;
     }
+}
+
+- (void)dj_setNavigationLeftItemAlpha:(CGFloat)alpha
+{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.leftBarButtonItems)
+    {
+        UIButton *btn = (UIButton *)buttonItem.customView;
+        
+        btn.alpha = alpha;
+    }
+}
+
+- (void)dj_setNavigationRightItemAlpha:(CGFloat)alpha
+{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems)
+    {
+        UIButton *btn = (UIButton *)buttonItem.customView;
+        
+        btn.alpha = alpha;
+    }
+}
+
+- (void)dj_setNeedsUpdateNavigationItemAlpha
+{
+    [self dj_setNavigationLeftItemAlpha:self.dj_NavigationItemAlpha];
+    [self dj_setNavigationRightItemAlpha:self.dj_NavigationItemAlpha];
 }
 
 - (void)dj_setNavigationLeftItemTintColor:(UIColor *)tintColor
@@ -250,13 +336,99 @@
         [self dj_setNeedsUpdateNavigationBarTintColor];
     }
     
+    self.dj_NavigationTitleTintColor = [UIColor whiteColor];
+    self.dj_NavigationItemTintColor = [UIColor whiteColor];
+    [self dj_setNeedsUpdateNavigationTitleTintColor];
+    [self dj_setNeedsUpdateNavigationItemTintColor];
+    
     // 设置左按键
-    UIBarButtonItem *lButtonItem = [self makeBarButton:lTitle image:lImage toucheEvent:lSelector];
+    UIBarButtonItem *lButtonItem = [self makeBarButton:lTitle image:lImage toucheEvent:lSelector buttonEdgeInsetsStyle:DJButtonEdgeInsetsStyleImageLeft imageTitleGap:2.0f];
     self.navigationItem.leftBarButtonItem = lButtonItem;
     
     // 设置右按键
-    UIBarButtonItem *rButtonItem = [self makeBarButton:rTitle image:rImage toucheEvent:rSelector];
+    UIBarButtonItem *rButtonItem = [self makeBarButton:rTitle image:rImage toucheEvent:rSelector buttonEdgeInsetsStyle:DJButtonEdgeInsetsStyleImageRight imageTitleGap:2.0f];
     self.navigationItem.rightBarButtonItem = rButtonItem;
+}
+
+- (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftDicArray:(NSArray *)larray rightDicArray:(NSArray *)rarray
+{
+    [self dj_setNavigationBarTitle:title];
+    
+    [self dj_setNavigationWithTitleView:nil barTintColor:barTintColor leftDicArray:larray rightDicArray:rarray];
+}
+
+- (void)dj_setNavigationWithTitleView:(UIView *)titleView barTintColor:(UIColor *)barTintColor leftDicArray:(NSArray *)larray rightDicArray:(NSArray *)rarray
+{
+    [self.navigationItem setHidesBackButton:YES];
+    
+    // 设置标题
+    if (titleView)
+    {
+        self.navigationItem.titleView = titleView;
+    }
+    
+    if (barTintColor)
+    {
+        self.dj_NavigationBarTintColor = barTintColor;
+        [self dj_setNeedsUpdateNavigationBarTintColor];
+    }
+    
+    self.dj_NavigationTitleTintColor = [UIColor whiteColor];
+    self.dj_NavigationItemTintColor = [UIColor whiteColor];
+    [self dj_setNeedsUpdateNavigationTitleTintColor];
+    [self dj_setNeedsUpdateNavigationItemTintColor];
+    
+    // 设置左Item
+    if ([larray isNotEmpty])
+    {
+        NSMutableArray *btnArray = [[NSMutableArray alloc] initWithCapacity:0];
+        for (NSDictionary *dic in larray)
+        {
+            NSString *title = [dic DJStringForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
+            NSString *imageName = [dic DJStringForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
+            SEL aSelector = NSSelectorFromString([dic DJStringForKey:DJNAVIGATION_BTNITEM_SELECTOR_KEY]);
+            DJButtonEdgeInsetsStyle edgeInsetsStyle = [dic uintForKey:DJNAVIGATION_BTNITEM_EDGESTYLE_KEY withDefault:DJButtonEdgeInsetsStyleImageLeft];
+            CGFloat gap = [dic uintForKey:DJNAVIGATION_BTNITEM_GAP_KEY withDefault:2];
+            
+            UIBarButtonItem *buttonItem = [self makeBarButton:title image:imageName toucheEvent:aSelector buttonEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap];
+            [btnArray addObject:buttonItem];
+        }
+        
+        if (btnArray.count)
+        {
+            self.navigationItem.leftBarButtonItems = btnArray;
+        }
+        else
+        {
+            self.navigationItem.leftBarButtonItems = nil;
+        }
+    }
+    
+    // 设置左Item
+    if ([rarray isNotEmpty])
+    {
+        NSMutableArray *btnArray = [[NSMutableArray alloc] initWithCapacity:0];
+        for (NSDictionary *dic in rarray)
+        {
+            NSString *title = [dic objectForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
+            NSString *imageName = [dic objectForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
+            SEL aSelector = NSSelectorFromString([dic objectForKey:DJNAVIGATION_BTNITEM_SELECTOR_KEY]);
+            DJButtonEdgeInsetsStyle edgeInsetsStyle = [dic uintForKey:DJNAVIGATION_BTNITEM_EDGESTYLE_KEY withDefault:DJButtonEdgeInsetsStyleImageRight];
+            CGFloat gap = [dic uintForKey:DJNAVIGATION_BTNITEM_GAP_KEY withDefault:2];
+
+            UIBarButtonItem *buttonItem = [self makeBarButton:title image:imageName toucheEvent:aSelector buttonEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap];
+            [btnArray addObject:buttonItem];
+        }
+        
+        if (btnArray.count)
+        {
+            self.navigationItem.rightBarButtonItems = btnArray;
+        }
+        else
+        {
+            self.navigationItem.rightBarButtonItems = nil;
+        }
+    }
 }
 
 - (UIButton *)dj_getNavigationLeftItemAtIndex:(NSUInteger)index

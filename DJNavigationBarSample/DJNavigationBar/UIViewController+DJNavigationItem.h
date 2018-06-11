@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#define DJNAVIGATION_BTNITEM_IMAGE_KEY      @"image"
+#define DJNAVIGATION_BTNITEM_TITLE_KEY      @"title"
+#define DJNAVIGATION_BTNITEM_SELECTOR_KEY   @"selector"
+#define DJNAVIGATION_BTNITEM_EDGESTYLE_KEY  @"edgeStyle"
+#define DJNAVIGATION_BTNITEM_GAP_KEY        @"gap"
+
 #pragma mark - NavigationItem
 
 @class DJNavigationTitleLabel;
@@ -41,6 +47,9 @@
 
 - (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightItemTitle:(NSString *)rTitle rightItemImage:(id)rImage rightToucheEvent:(SEL)rSelector;
 - (void)dj_setNavigationWithTitleView:(UIView *)titleView barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightItemTitle:(NSString *)rTitle rightItemImage:(id)rImage rightToucheEvent:(SEL)rSelector;
+
+- (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftDicArray:(NSArray *)larray rightDicArray:(NSArray *)rarray;
+- (void)dj_setNavigationWithTitleView:(UIView *)titleView barTintColor:(UIColor *)barTintColor leftDicArray:(NSArray *)larray rightDicArray:(NSArray *)rarray;
 
 - (UIButton *)dj_getNavigationLeftItemAtIndex:(NSUInteger)index;
 - (UIButton *)dj_getNavigationRightItemAtIndex:(NSUInteger)index;

@@ -21,6 +21,9 @@
 		870B3F3220B57F5200CDEBF1 /* navigationbar_setup_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 870B3F3020B57F5200CDEBF1 /* navigationbar_setup_icon@3x.png */; };
 		870B3F3320B57F5200CDEBF1 /* navigationbar_setup_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 870B3F3120B57F5200CDEBF1 /* navigationbar_setup_icon@2x.png */; };
 		870B3F5820B65EBE00CDEBF1 /* UIViewController+DJNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 870B3F5720B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.m */; };
+		874339B620C7AD22004F0CCD /* DJNavigationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 874339B520C7AD22004F0CCD /* DJNavigationButton.m */; };
+		874339B920C7AE72004F0CCD /* UIButton+DJEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 874339B820C7AE72004F0CCD /* UIButton+DJEdgeInsets.m */; };
+		8785979020CE519B00C49874 /* NSDictionary+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785978E20CE519B00C49874 /* NSDictionary+Category.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,12 @@
 		870B3F3120B57F5200CDEBF1 /* navigationbar_setup_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_setup_icon@2x.png"; sourceTree = "<group>"; };
 		870B3F5620B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DJNavigationItem.h"; sourceTree = "<group>"; };
 		870B3F5720B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DJNavigationItem.m"; sourceTree = "<group>"; };
+		874339B420C7AD22004F0CCD /* DJNavigationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJNavigationButton.h; sourceTree = "<group>"; };
+		874339B520C7AD22004F0CCD /* DJNavigationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJNavigationButton.m; sourceTree = "<group>"; };
+		874339B720C7AE71004F0CCD /* UIButton+DJEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+DJEdgeInsets.h"; sourceTree = "<group>"; };
+		874339B820C7AE72004F0CCD /* UIButton+DJEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+DJEdgeInsets.m"; sourceTree = "<group>"; };
+		8785978E20CE519B00C49874 /* NSDictionary+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Category.m"; sourceTree = "<group>"; };
+		8785978F20CE519B00C49874 /* NSDictionary+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Category.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,10 +97,16 @@
 				5ACBFF08209AE3FE00BB7A8C /* DJNavigationBarDefine.h */,
 				5A50415020944413004E1E9E /* DJNavigationBar.h */,
 				5A50415120944413004E1E9E /* DJNavigationBar.m */,
+				874339B420C7AD22004F0CCD /* DJNavigationButton.h */,
+				874339B520C7AD22004F0CCD /* DJNavigationButton.m */,
 				870B3F2E20B5561F00CDEBF1 /* DJNavigationTitleLabel.h */,
 				870B3F2D20B5561F00CDEBF1 /* DJNavigationTitleLabel.m */,
 				5A50415420944B9A004E1E9E /* DJNavigationController.h */,
 				5A50415520944B9A004E1E9E /* DJNavigationController.m */,
+				8785978F20CE519B00C49874 /* NSDictionary+Category.h */,
+				8785978E20CE519B00C49874 /* NSDictionary+Category.m */,
+				874339B720C7AE71004F0CCD /* UIButton+DJEdgeInsets.h */,
+				874339B820C7AE72004F0CCD /* UIButton+DJEdgeInsets.m */,
 				5A50415720944E82004E1E9E /* UIViewController+DJNavigationBar.h */,
 				5A50415820944E82004E1E9E /* UIViewController+DJNavigationBar.m */,
 				870B3F5620B65EBD00CDEBF1 /* UIViewController+DJNavigationItem.h */,
@@ -246,9 +261,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874339B920C7AE72004F0CCD /* UIButton+DJEdgeInsets.m in Sources */,
 				5ACBFF052099E2FA00BB7A8C /* ViewController.m in Sources */,
+				874339B620C7AD22004F0CCD /* DJNavigationButton.m in Sources */,
 				870B3F5820B65EBE00CDEBF1 /* UIViewController+DJNavigationItem.m in Sources */,
 				870B3F2F20B5561F00CDEBF1 /* DJNavigationTitleLabel.m in Sources */,
+				8785979020CE519B00C49874 /* NSDictionary+Category.m in Sources */,
 				5A50415920944E82004E1E9E /* UIViewController+DJNavigationBar.m in Sources */,
 				5A50415620944B9A004E1E9E /* DJNavigationController.m in Sources */,
 				5A98C486209428940042BB5F /* main.m in Sources */,

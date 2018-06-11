@@ -98,53 +98,54 @@
     }
 }
 
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    if (!self.isUserInteractionEnabled || self.isHidden || self.alpha <= 0.01)
-//    {
-//        return nil;
-//    }
-//    
-//    UIView *view = [super hitTest:point withEvent:event];
-//    NSString *viewName = [[[view classForCoder] description] stringByReplacingOccurrencesOfString:@"_" withString:@""];
-//    
-//    if (view && [viewName isEqualToString:@"DJNavigationBar"])
-//    {
-//        for (UIView *subview in self.subviews)
-//        {
-//            NSString *viewName = [[[subview classForCoder] description] stringByReplacingOccurrencesOfString:@"_" withString:@""];
-//            NSArray *array = @[@"UINavigationItemButtonView"];
-//            if ([array containsObject:viewName])
-//            {
-//                CGPoint convertedPoint = [self convertPoint:point toView:subview];
-//                CGRect bounds = subview.bounds;
-//                if (bounds.size.width < 80.0f)
-//                {
-//                    bounds = CGRectInset(bounds, bounds.size.width - 80.0f, 0);
-//                }
-//                if (CGRectContainsPoint(bounds, convertedPoint))
-//                {
-//                    return view;
-//                }
-//            }
-//        }
-//    }
-//    
-//    NSArray *array = @[ @"UINavigationBarContentView", @"DJNavigationBar" ];
-//    if ([array containsObject:viewName])
-//    {
-//        if (self.effectView.alpha < 0.01)
-//        {
-//            return nil;
-//        }
-//    }
-//    
-//    if (CGRectEqualToRect(view.bounds, CGRectZero))
-//    {
-//        return nil;
-//    }
-//    
-//    return view;
-//}
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    if (!self.isUserInteractionEnabled || self.isHidden || self.alpha <= 0.01)
+    {
+        return nil;
+    }
+    
+    UIView *view = [super hitTest:point withEvent:event];
+    
+    NSString *viewName = [[[view classForCoder] description] stringByReplacingOccurrencesOfString:@"_" withString:@""];
+    
+    if (view && [viewName isEqualToString:@"DJNavigationBar"])
+    {
+        for (UIView *subview in self.subviews)
+        {
+            NSString *viewName = [[[subview classForCoder] description] stringByReplacingOccurrencesOfString:@"_" withString:@""];
+            NSArray *array = @[@"UINavigationItemButtonView"];
+            if ([array containsObject:viewName])
+            {
+                CGPoint convertedPoint = [self convertPoint:point toView:subview];
+                CGRect bounds = subview.bounds;
+                if (bounds.size.width < 80.0f)
+                {
+                    bounds = CGRectInset(bounds, bounds.size.width - 80.0f, 0);
+                }
+                if (CGRectContainsPoint(bounds, convertedPoint))
+                {
+                    return view;
+                }
+            }
+        }
+    }
+    
+    NSArray *array = @[ @"UINavigationBarContentView", @"UITAMICAdaptorView", @"DJNavigationBar" ];
+    if ([array containsObject:viewName])
+    {
+        if (self.effectView.alpha < 0.01)
+        {
+            return nil;
+        }
+    }
+
+    if (CGRectEqualToRect(view.bounds, CGRectZero))
+    {
+        return nil;
+    }
+    
+    return view;
+}
 
 @end

@@ -48,12 +48,22 @@
 //    self.extendedLayoutIncludesOpaqueBars = NO;
 //    self.modalPresentationCapturesStatusBarAppearance = NO;
     
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+    temporaryBarButtonItem.title = @"";
+    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+
     self.dj_NavigationItemTintColor = [UIColor yellowColor];
-    //[self dj_setNavigationWithTitle:@"DJNavigationBar" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:@"navigationbar_setup_icon" rightToucheEvent:@selector(rightClick)];
-    [self dj_setNavigationWithTitle:@"DJNavigationBar" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:@"TT" rightItemImage:@"navigationbar_setup_icon" rightToucheEvent:@selector(rightClick)];
-//    UIButton *btn = [self getNavigationRightItemAtIndex:0];
-//    btn.tintColor = [UIColor redColor];
-    //self.title = @"DJNavigationBar";
+    if (self.navigationController.viewControllers.count > 1)
+    {
+        [self dj_setNavigationWithTitle:@"DJNavigationBar" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:@"TT" rightItemImage:@"navigationbar_setup_icon" rightToucheEvent:@selector(rightClick)];
+
+        UIButton *btn = [self dj_getNavigationRightItemAtIndex:0];
+        btn.tintColor = [UIColor redColor];
+    }
+    else
+    {
+        self.title = @"DJNavigationBar";
+    }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 1000);
 
