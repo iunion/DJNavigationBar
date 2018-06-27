@@ -16,6 +16,8 @@
 
 #pragma mark - NavigationItem
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DJNavigationTitleLabel;
 
 @interface UIViewController (DJNavigationItem)
@@ -46,20 +48,20 @@
 - (void)dj_setNeedsUpdateNavigationTitleTintColor;
 
 - (DJNavigationTitleLabel *)dj_getNavigationBarTitleLabel;
-- (void)dj_setNavigationBarTitle:(NSString *)title;
+- (void)dj_setNavigationBarTitle:(nullable NSString *)title;
 
 // NavigationItem
 - (void)dj_setNeedsUpdateNavigationItemAlpha;
 - (void)dj_setNeedsUpdateNavigationItemTintColor;
 
-- (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightItemTitle:(NSString *)rTitle rightItemImage:(id)rImage rightToucheEvent:(SEL)rSelector;
-- (void)dj_setNavigationWithTitleView:(UIView *)titleView barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightItemTitle:(NSString *)rTitle rightItemImage:(id)rImage rightToucheEvent:(SEL)rSelector;
+- (void)dj_setNavigationWithTitle:(nullable NSString *)title barTintColor:(nullable UIColor *)barTintColor leftItemTitle:(nullable NSString *)lTitle leftItemImage:(nullable id)lImage leftToucheEvent:(nullable SEL)lSelector rightItemTitle:(nullable NSString *)rTitle rightItemImage:(nullable id)rImage rightToucheEvent:(nullable SEL)rSelector;
+- (void)dj_setNavigationWithTitleView:(nullable UIView *)titleView barTintColor:(nullable UIColor *)barTintColor leftItemTitle:(nullable NSString *)lTitle leftItemImage:(nullable id)lImage leftToucheEvent:(nullable SEL)lSelector rightItemTitle:(nullable NSString *)rTitle rightItemImage:(nullable id)rImage rightToucheEvent:(nullable SEL)rSelector;
 
-- (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftDicArray:(NSArray *)larray rightDicArray:(NSArray *)rarray;
-- (void)dj_setNavigationWithTitleView:(UIView *)titleView barTintColor:(UIColor *)barTintColor leftDicArray:(NSArray *)larray rightDicArray:(NSArray *)rarray;
+- (void)dj_setNavigationWithTitle:(nullable NSString *)title barTintColor:(nullable UIColor *)barTintColor leftDicArray:(nullable NSArray *)larray rightDicArray:(nullable NSArray *)rarray;
+- (void)dj_setNavigationWithTitleView:(nullable UIView *)titleView barTintColor:(nullable UIColor *)barTintColor leftDicArray:(nullable NSArray *)larray rightDicArray:(nullable NSArray *)rarray;
 
-- (UIButton *)dj_getNavigationLeftItemAtIndex:(NSUInteger)index;
-- (UIButton *)dj_getNavigationRightItemAtIndex:(NSUInteger)index;
+- (nullable UIButton *)dj_getNavigationLeftItemAtIndex:(NSUInteger)index;
+- (nullable UIButton *)dj_getNavigationRightItemAtIndex:(NSUInteger)index;
 
 - (void)dj_setNavigationLeftItemTintColor:(UIColor *)tintColor;
 - (void)dj_setNavigationRightItemTintColor:(UIColor *)tintColor;
@@ -69,3 +71,5 @@
 - (void)dj_setNavigationItemEnable:(BOOL)enable;
 
 @end
+
+NS_ASSUME_NONNULL_END

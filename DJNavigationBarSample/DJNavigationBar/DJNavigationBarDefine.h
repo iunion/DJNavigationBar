@@ -17,6 +17,8 @@
 #define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
 #define UI_NAVIGATION_BAR_HEIGHT        44
 
+#define DJNavigationBgColor             [UIColor colorWithRed:20/255.0 green:146/255.0 blue:255/255.0 alpha:1.0]
+
 #define DJNavigationBar_DefaultEffect  [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]
 
 #endif /* DJNavigationBarDefine_h */

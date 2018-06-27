@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 阴影线条
 @property (nonatomic, strong, readonly) UIImageView *shadowLineImageView;
 
-- (void)setBackgroundImage:(UIImage *)backgroundImage;
+- (void)setBackgroundImage:(nullable UIImage *)backgroundImage;
 
 @end
 

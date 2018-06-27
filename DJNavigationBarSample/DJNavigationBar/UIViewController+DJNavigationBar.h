@@ -10,6 +10,8 @@
 
 #pragma mark - NavigationBar
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIViewController (DJNavigationBar)
 
 // UIBarStyle
@@ -24,7 +26,7 @@
 // NavigationBar背景效果
 @property (nonatomic, strong) UIVisualEffect *dj_NavigationBarEffect;
 // NavigationBar背景图
-@property (nonatomic, strong) UIImage *dj_NavigationBarImage;
+@property (nullable, nonatomic, strong) UIImage *dj_NavigationBarImage;
 
 // NavigationBar阴影线条透明度
 @property (nonatomic, assign, readonly) CGFloat dj_NavigationShadowAlpha;
@@ -52,3 +54,5 @@
 - (void)dj_setNeedsUpdateNavigationShadowColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -25,7 +25,12 @@
         return obj;
     }
     
-    return [UINavigationBar appearance].tintColor;
+    if ([UINavigationBar appearance].tintColor)
+    {
+        return [UINavigationBar appearance].tintColor;
+    }
+    
+    return [UINavigationBar appearance].barStyle == UIBarStyleDefault ? [UIColor blackColor]: [UIColor whiteColor];
 }
 
 - (void)setDj_NavigationBarTintColor:(UIColor *)navigationBarTintColor
@@ -72,6 +77,11 @@
         return obj;
     }
     
+    if ([UINavigationBar appearance].tintColor)
+    {
+        return [UINavigationBar appearance].tintColor;
+    }
+    
     return [UINavigationBar appearance].barStyle == UIBarStyleDefault ? [UIColor blackColor]: [UIColor whiteColor];
 }
 
@@ -112,6 +122,11 @@
     if (obj)
     {
         return obj;
+    }
+    
+    if ([UINavigationBar appearance].tintColor)
+    {
+        return [UINavigationBar appearance].tintColor;
     }
     
     return [UINavigationBar appearance].barStyle == UIBarStyleDefault ? [UIColor blackColor]: [UIColor whiteColor];
@@ -362,8 +377,8 @@
         [self dj_setNeedsUpdateNavigationBarBgTintColor];
     }
     
-    self.dj_NavigationTitleTintColor = [UIColor whiteColor];
-    self.dj_NavigationItemTintColor = [UIColor whiteColor];
+    //self.dj_NavigationTitleTintColor = [UIColor whiteColor];
+    //self.dj_NavigationItemTintColor = [UIColor whiteColor];
     [self dj_setNeedsUpdateNavigationTitleTintColor];
     [self dj_setNeedsUpdateNavigationItemTintColor];
     
@@ -399,8 +414,8 @@
         [self dj_setNeedsUpdateNavigationBarBgTintColor];
     }
     
-    self.dj_NavigationTitleTintColor = [UIColor whiteColor];
-    self.dj_NavigationItemTintColor = [UIColor whiteColor];
+    //self.dj_NavigationTitleTintColor = [UIColor whiteColor];
+    //self.dj_NavigationItemTintColor = [UIColor whiteColor];
     [self dj_setNeedsUpdateNavigationTitleTintColor];
     [self dj_setNeedsUpdateNavigationItemTintColor];
     
