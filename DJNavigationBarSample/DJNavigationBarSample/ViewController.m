@@ -41,6 +41,8 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"viewDidLoad");
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
@@ -55,7 +57,7 @@
     self.dj_NavigationItemTintColor = [UIColor yellowColor];
     if (self.navigationController.viewControllers.count > 1)
     {
-        [self dj_setNavigationWithTitle:@"DJNavigationBar" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:@"TT" rightItemImage:@"navigationbar_setup_icon" rightToucheEvent:@selector(rightClick)];
+        [self dj_setNavigationWithTitle:@"DJNavigationBar" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_setup_icon" leftToucheEvent:@selector(leftClick) rightItemTitle:@"TT" rightItemImage:@"navigationbar_setup_icon" rightToucheEvent:@selector(rightClick)];
 
         UIButton *btn = [self dj_getNavigationRightItemAtIndex:0];
         btn.tintColor = [UIColor redColor];
@@ -68,7 +70,53 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 1000);
 
     self.blurEffectSwitch.on = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"viewWillAppear");
     
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"viewDidAppear");
+    
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"viewWillDisappear");
+    
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    NSLog(@"viewDidDisappear");
+    
+    [super viewDidDisappear:animated];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    NSLog(@"viewWillLayoutSubviews");
+    
+    [super viewWillLayoutSubviews];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    NSLog(@"viewDidLayoutSubviews");
+    
+    [super viewDidLayoutSubviews];
+}
+
+- (void)leftClick
+{
+    NSLog(@"leftClick");
 }
 
 - (void)rightClick
@@ -115,7 +163,7 @@
                        [UIColor.blueColor colorWithAlphaComponent:0.8]
                        ][self.colorSegment.selectedSegmentIndex];
     
-    vc.dj_NavigationBarTintColor = color;
+    vc.dj_NavigationBarBgTintColor = color;
 
     return vc;
 }

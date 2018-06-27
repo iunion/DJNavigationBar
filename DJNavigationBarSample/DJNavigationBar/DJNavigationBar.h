@@ -16,8 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 // 蒙层效果
 // The effect is either a UIBlurEffect or a UIVibrancyEffect.
 @property (nullable, nonatomic, strong) UIVisualEffect *effect;
+// 背景
+@property (nonatomic, strong, readonly) UIImageView *backgroundImageView;
 // 阴影线条
 @property (nonatomic, strong, readonly) UIImageView *shadowLineImageView;
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage;
 
 @end
 

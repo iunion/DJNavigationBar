@@ -9,12 +9,29 @@
 #import "UIViewController+DJNavigationItem.h"
 #import <objc/runtime.h>
 #import "DJNavigationBarDefine.h"
+#import "DJNavigationController.h"
 #import "DJNavigationTitleLabel.h"
 #import "UIViewController+DJNavigationBar.h"
 #import "UIButton+DJEdgeInsets.h"
 #import "NSDictionary+Category.h"
 
 @implementation UIViewController (DJNavigationItem)
+
+- (UIColor *)dj_NavigationBarTintColor
+{
+    id obj = objc_getAssociatedObject(self, _cmd);
+    if (obj)
+    {
+        return obj;
+    }
+    
+    return [UINavigationBar appearance].tintColor;
+}
+
+- (void)setDj_NavigationBarTintColor:(UIColor *)navigationBarTintColor
+{
+    objc_setAssociatedObject(self, @selector(dj_NavigationBarTintColor), navigationBarTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 - (CGFloat)dj_NavigationTitleAlpha
 {
@@ -138,6 +155,15 @@
     
     // 设置标题
     titleLabel.text = title;
+}
+
+- (void)dj_setNeedsUpdateNavigationTintColor
+{
+    if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])
+    {
+        DJNavigationController *nav = (DJNavigationController *)self.navigationController;
+        [nav updateNavigationBarTintColorForViewController:self];
+    }
 }
 
 - (void)dj_setNeedsUpdateNavigationTitleAlpha
@@ -332,8 +358,8 @@
     
     if (barTintColor)
     {
-        self.dj_NavigationBarTintColor = barTintColor;
-        [self dj_setNeedsUpdateNavigationBarTintColor];
+        self.dj_NavigationBarBgTintColor = barTintColor;
+        [self dj_setNeedsUpdateNavigationBarBgTintColor];
     }
     
     self.dj_NavigationTitleTintColor = [UIColor whiteColor];
@@ -369,8 +395,8 @@
     
     if (barTintColor)
     {
-        self.dj_NavigationBarTintColor = barTintColor;
-        [self dj_setNeedsUpdateNavigationBarTintColor];
+        self.dj_NavigationBarBgTintColor = barTintColor;
+        [self dj_setNeedsUpdateNavigationBarBgTintColor];
     }
     
     self.dj_NavigationTitleTintColor = [UIColor whiteColor];

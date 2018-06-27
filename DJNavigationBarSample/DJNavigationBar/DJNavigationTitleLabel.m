@@ -8,6 +8,8 @@
 
 #import "DJNavigationTitleLabel.h"
 
+#define BMNAVIGATIONTITLE_WIDTH     180.0f
+
 @implementation DJNavigationTitleLabel
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -24,6 +26,9 @@
         self.textAlignment = NSTextAlignmentCenter;
         self.textColor = nil;//[UIColor whiteColor];
         self.tintColor = [UIColor whiteColor];
+        CGRect frame = self.frame;
+        frame.size.width = BMNAVIGATIONTITLE_WIDTH;
+        self.frame = frame;
     }
     
     return self;

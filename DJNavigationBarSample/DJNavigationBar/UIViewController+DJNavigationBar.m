@@ -54,7 +54,7 @@
     objc_setAssociatedObject(self, @selector(dj_NavigationBarHidden), @(hidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UIColor *)dj_NavigationBarTintColor
+- (UIColor *)dj_NavigationBarBgTintColor
 {
     if (self.dj_NavigationBarHidden)
     {
@@ -75,9 +75,9 @@
     return (self.dj_NavigationBarStyle == UIBarStyleDefault) ? [UIColor colorWithRed:247/255.0 green:247/255.0 blue:247/255.0 alpha:0.8]: [UIColor colorWithRed:28/255.0 green:28/255.0 blue:28/255.0 alpha:0.729];
 }
 
-- (void)setDj_NavigationBarTintColor:(UIColor *)navigationBarTintColor
+- (void)setDj_NavigationBarBgTintColor:(UIColor *)navigationBarBgTintColor
 {
-    objc_setAssociatedObject(self, @selector(dj_NavigationBarTintColor), navigationBarTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(dj_NavigationBarBgTintColor), navigationBarBgTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UIVisualEffect *)dj_NavigationBarEffect
@@ -89,6 +89,17 @@
 - (void)setDj_NavigationBarEffect:(UIVisualEffect *)navigationBarEffect
 {
     objc_setAssociatedObject(self, @selector(dj_NavigationBarEffect), navigationBarEffect, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIImage *)dj_NavigationBarImage
+{
+    id obj = objc_getAssociatedObject(self, _cmd);
+    return obj;
+}
+
+- (void)setDj_NavigationBarImage:(UIImage *)navigationBarImage
+{
+    objc_setAssociatedObject(self, @selector(dj_NavigationBarImage), navigationBarImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CGFloat)dj_NavigationShadowAlpha
@@ -181,16 +192,25 @@
     }
 }
 
-- (void)dj_setNeedsUpdateNavigationBarTintColor
+- (void)dj_setNeedsUpdateNavigationBarBgTintColor
 {
     if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])
     {
         DJNavigationController *nav = (DJNavigationController *)self.navigationController;
-        [nav updateNavigationBarTintColorForViewController:self];
+        [nav updateNavigationBarBgTintColorForViewController:self];
     }
 }
 
 - (void)dj_setNeedsUpdateNavigationBarEffect
+{
+    if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])
+    {
+        DJNavigationController *nav = (DJNavigationController *)self.navigationController;
+        [nav updateNavigationBarEffectForViewController:self];
+    }
+}
+
+- (void)dj_setNeedsUpdateNavigationBarImage
 {
     if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])
     {

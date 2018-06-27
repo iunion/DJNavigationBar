@@ -20,6 +20,10 @@
 
 @interface UIViewController (DJNavigationItem)
 
+// NavigationBar barTintColor
+// 控制系统title和btnItem颜色，使用本category请使用dj_NavigationTitleTintColor和dj_NavigationItemTintColor设置颜色
+@property (nonatomic, strong) UIColor *dj_NavigationBarTintColor;
+
 // Title透明度
 @property (nonatomic, assign) CGFloat dj_NavigationTitleAlpha;
 // Title是否隐藏
@@ -33,6 +37,9 @@
 @property (nonatomic, assign) BOOL dj_NavigationItemHidden;
 // BarItem tintColor
 @property (nonatomic, strong) UIColor *dj_NavigationItemTintColor;
+
+
+- (void)dj_setNeedsUpdateNavigationTintColor;
 
 // NavigationTitle
 - (void)dj_setNeedsUpdateNavigationTitleAlpha;

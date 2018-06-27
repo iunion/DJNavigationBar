@@ -12,6 +12,7 @@
 @interface DJNavigationBar ()
 
 @property (nonatomic, strong) UIVisualEffectView *effectView;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *shadowLineImageView;
 
 @end
@@ -36,21 +37,6 @@
     return _effectView;
 }
 
-- (UIImageView *)shadowLineImageView
-{
-    if (!_shadowLineImageView)
-    {
-        [super setShadowImage:[UIImage new]];
-        UIView *view = self.subviews.firstObject;
-        
-        _shadowLineImageView = [[UIImageView alloc] init];
-        _shadowLineImageView.userInteractionEnabled = NO;
-        [view insertSubview:_shadowLineImageView aboveSubview:self.effectView];
-    }
-    
-    return _shadowLineImageView;
-}
-
 - (UIVisualEffect *)effect
 {
     return self.effectView.effect;
@@ -61,32 +47,65 @@
     self.effectView.effect = effect;
 }
 
+- (UIImageView *)backgroundImageView
+{
+    if (!_backgroundImageView)
+    {
+        UIView *view = self.subviews.firstObject;
+        
+        _backgroundImageView = [[UIImageView alloc] init];
+        _backgroundImageView.userInteractionEnabled = NO;
+        _backgroundImageView.contentScaleFactor = 1;
+        _backgroundImageView.contentMode = UIViewContentModeScaleToFill;
+        _backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [view insertSubview:_backgroundImageView aboveSubview:self.effectView];
+    }
+    return _backgroundImageView;
+}
+
+- (UIImageView *)shadowLineImageView
+{
+    if (!_shadowLineImageView)
+    {
+        [super setShadowImage:[UIImage new]];
+        UIView *view = self.subviews.firstObject;
+        
+        _shadowLineImageView = [[UIImageView alloc] init];
+        _shadowLineImageView.userInteractionEnabled = NO;
+        _shadowLineImageView.contentScaleFactor = 1;
+        [view insertSubview:_shadowLineImageView aboveSubview:self.backgroundImageView];
+    }
+    
+    return _shadowLineImageView;
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     self.effectView.frame = self.effectView.superview.bounds;
-    self.shadowLineImageView.frame = CGRectMake(0, CGRectGetHeight(self.shadowLineImageView.superview.bounds), CGRectGetWidth(self.shadowLineImageView.superview.bounds), 1.0f/[UIScreen mainScreen].scale);
+    self.backgroundImageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.shadowLineImageView.superview.bounds), CGRectGetHeight(self.shadowLineImageView.superview.bounds)-1.0f/[UIScreen mainScreen].scale);
+    self.shadowLineImageView.frame = CGRectMake(0, CGRectGetHeight(self.shadowLineImageView.superview.bounds)-1.0f/[UIScreen mainScreen].scale, CGRectGetWidth(self.shadowLineImageView.superview.bounds), 1.0f/[UIScreen mainScreen].scale);
+}
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    self.backgroundImageView.image = backgroundImage;
 }
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage forBarMetrics:(UIBarMetrics)barMetrics
 {
+    self.backgroundImageView.image = backgroundImage;
     return;
 }
 
 - (void)setBarTintColor:(UIColor *)barTintColor
 {
     [super setBarTintColor:barTintColor];
-    self.effectView.contentView.backgroundColor =  barTintColor;
+    self.effectView.contentView.backgroundColor = barTintColor;
 }
 
 - (void)setShadowImage:(UIImage *)shadowImage
 {
-//    UIImage *shinobiHead = [UIImage imageNamed:@"shinobihead"];
-//    // Set the rendering mode to respect tint color
-//    shinobiHead = [shinobiHead imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    // And set to the image view
-//    self.tintedImageView.image = shinobiHead;
-
     self.shadowLineImageView.image = shadowImage;
     if (shadowImage)
     {

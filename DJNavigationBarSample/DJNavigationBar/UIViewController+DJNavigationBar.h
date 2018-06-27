@@ -20,9 +20,11 @@
 // NavigationBar是否隐藏
 @property (nonatomic, assign) BOOL dj_NavigationBarHidden;
 // NavigationBar背景色
-@property (nonatomic, strong) UIColor *dj_NavigationBarTintColor;
-// NavigationBar背景色
+@property (nonatomic, strong) UIColor *dj_NavigationBarBgTintColor;
+// NavigationBar背景效果
 @property (nonatomic, strong) UIVisualEffect *dj_NavigationBarEffect;
+// NavigationBar背景图
+@property (nonatomic, strong) UIImage *dj_NavigationBarImage;
 
 // NavigationBar阴影线条透明度
 @property (nonatomic, assign, readonly) CGFloat dj_NavigationShadowAlpha;
@@ -42,8 +44,9 @@
 - (void)dj_setNeedsUpdateNavigationBarStyle;
 
 - (void)dj_setNeedsUpdateNavigationBarAlpha;
-- (void)dj_setNeedsUpdateNavigationBarTintColor;
+- (void)dj_setNeedsUpdateNavigationBarBgTintColor;
 - (void)dj_setNeedsUpdateNavigationBarEffect;
+- (void)dj_setNeedsUpdateNavigationBarImage;
 
 - (void)dj_setNeedsUpdateNavigationShadowAlpha;
 - (void)dj_setNeedsUpdateNavigationShadowColor;
