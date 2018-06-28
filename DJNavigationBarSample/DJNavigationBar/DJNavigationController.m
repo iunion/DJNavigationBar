@@ -53,6 +53,7 @@ UIColor* blendColor(UIColor *from, UIColor *to, float percent)
 /// A Boolean value indicating whether navigation controller is currently pushing or pop a new view controller on the stack.
 @property (nonatomic, getter = isDuringPushAnimation) BOOL duringPushAnimation;
 @property (nonatomic, getter = isDuringPopAnimation) BOOL duringPopAnimation;
+
 /// A real delegate of the class. `delegate` property is used only for keeping an internal state during
 /// animations – we need to know when the animation ended, and that info is available only
 /// from `navigationController:didShowViewController:animated:`.
@@ -357,7 +358,9 @@ UIColor* blendColor(UIColor *from, UIColor *to, float percent)
     }
 }
 
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (void)navigationController:(UINavigationController *)navigationController
+       didShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated
 {
     NSCAssert(self.interactivePopGestureRecognizer.delegate == self, @"DJNavigationController won't work correctly if you change interactivePopGestureRecognizer's delegate.");
     
@@ -487,7 +490,7 @@ UIColor* blendColor(UIColor *from, UIColor *to, float percent)
     if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged)
     {
         self.inGesture = YES;
-        self.navigationBar.tintColor = blendColor(from.dj_NavigationBarBgTintColor, to.dj_NavigationBarBgTintColor, coordinator.percentComplete);
+        self.navigationBar.tintColor = blendColor(from.dj_NavigationBarTintColor, to.dj_NavigationBarTintColor, coordinator.percentComplete);
     } else {
         self.inGesture = NO;
     }
@@ -534,14 +537,14 @@ UIColor* blendColor(UIColor *from, UIColor *to, float percent)
 
 // Thanks for the idea goes to: https://github.com/steipete/PSPDFTextView/blob/ee9ce04ad04217efe0bc84d67f3895a34252d37c/PSPDFTextView/PSPDFTextView.m#L148-164
 
-- (BOOL)respondsToSelector:(SEL)s
+- (BOOL)respondsToSelector:(SEL)sel
 {
-    return [super respondsToSelector:s] || [self.realDelegate respondsToSelector:s];
+    return [super respondsToSelector:sel] || [self.realDelegate respondsToSelector:sel];
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)s
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
 {
-    return [super methodSignatureForSelector:s] ?: [(id)self.realDelegate methodSignatureForSelector:s];
+    return [super methodSignatureForSelector:sel] ?: [(id)self.realDelegate methodSignatureForSelector:sel];
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation

@@ -142,6 +142,11 @@
 
 - (DJNavigationTitleLabel *)dj_getNavigationBarTitleLabel
 {
+    return [self dj_getNavigationBarTitleLabelAndCreate:YES];
+}
+
+- (DJNavigationTitleLabel *)dj_getNavigationBarTitleLabelAndCreate:(BOOL)createNew
+{
     DJNavigationTitleLabel *titleLabel = nil;
     UIView *view = self.navigationItem.titleView;
     
@@ -151,10 +156,13 @@
     }
     else
     {
-        titleLabel = [[DJNavigationTitleLabel alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
-        titleLabel.textColor = self.dj_NavigationTitleTintColor;
-        
-        self.navigationItem.titleView = titleLabel;
+        if (createNew)
+        {
+            titleLabel = [[DJNavigationTitleLabel alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
+            titleLabel.textColor = self.dj_NavigationTitleTintColor;
+    
+            self.navigationItem.titleView = titleLabel;
+        }
     }
     
     return titleLabel;
@@ -172,7 +180,7 @@
     titleLabel.text = title;
 }
 
-- (void)dj_setNeedsUpdateNavigationTintColor
+- (void)dj_setNeedsUpdateNavigationBarTintColor
 {
     if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])
     {
@@ -302,6 +310,36 @@
     }
 }
 
+- (NSArray *)makeButtonItemsWithDicArray:(NSArray *)dicArray
+{
+    if ([dicArray isNotEmpty])
+    {
+        NSMutableArray *btnArray = [[NSMutableArray alloc] initWithCapacity:0];
+        for (NSDictionary *dic in dicArray)
+        {
+            NSString *title = [dic objectForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
+            NSString *imageName = [dic objectForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
+            SEL aSelector = NSSelectorFromString([dic objectForKey:DJNAVIGATION_BTNITEM_SELECTOR_KEY]);
+            DJButtonEdgeInsetsStyle edgeInsetsStyle = [dic uintForKey:DJNAVIGATION_BTNITEM_EDGESTYLE_KEY withDefault:DJButtonEdgeInsetsStyleImageRight];
+            CGFloat gap = [dic uintForKey:DJNAVIGATION_BTNITEM_GAP_KEY withDefault:2];
+            
+            UIBarButtonItem *buttonItem = [self makeBarButton:title image:imageName toucheEvent:aSelector buttonEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap];
+            [btnArray addObject:buttonItem];
+        }
+        
+        if (btnArray.count)
+        {
+            return btnArray;
+        }
+        else
+        {
+            return nil;
+        }
+    }
+    
+    return nil;
+}
+
 - (void)dj_setNavigationLeftItemAlpha:(CGFloat)alpha
 {
     for (UIBarButtonItem *buttonItem in self.navigationItem.leftBarButtonItems)
@@ -326,32 +364,6 @@
 {
     [self dj_setNavigationLeftItemAlpha:self.dj_NavigationItemAlpha];
     [self dj_setNavigationRightItemAlpha:self.dj_NavigationItemAlpha];
-}
-
-- (void)dj_setNavigationLeftItemTintColor:(UIColor *)tintColor
-{
-    for (UIBarButtonItem *buttonItem in self.navigationItem.leftBarButtonItems)
-    {
-        UIButton *btn = (UIButton *)buttonItem.customView;
-        
-        btn.tintColor = tintColor;
-    }
-}
-
-- (void)dj_setNavigationRightItemTintColor:(UIColor *)tintColor
-{
-    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems)
-    {
-        UIButton *btn = (UIButton *)buttonItem.customView;
-        
-        btn.tintColor = tintColor;
-    }
-}
-
-- (void)dj_setNeedsUpdateNavigationItemTintColor
-{
-    [self dj_setNavigationLeftItemTintColor:self.dj_NavigationItemTintColor];
-    [self dj_setNavigationRightItemTintColor:self.dj_NavigationItemTintColor];
 }
 
 - (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightItemTitle:(NSString *)rTitle rightItemImage:(id)rImage rightToucheEvent:(SEL)rSelector
@@ -391,6 +403,46 @@
     self.navigationItem.rightBarButtonItem = rButtonItem;
 }
 
+- (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightDicArray:(NSArray *)rarray
+{
+    [self dj_setNavigationBarTitle:title];
+    
+    [self dj_setNavigationWithTitleView:nil barTintColor:barTintColor leftItemTitle:lTitle leftItemImage:lImage leftToucheEvent:lSelector rightDicArray:rarray];
+}
+
+- (void)dj_setNavigationWithTitleView:(UIView *)titleView barTintColor:(UIColor *)barTintColor leftItemTitle:(NSString *)lTitle leftItemImage:(id)lImage leftToucheEvent:(SEL)lSelector rightDicArray:(NSArray *)rarray
+{
+    [self.navigationItem setHidesBackButton:YES];
+    
+    // 设置标题
+    if (titleView)
+    {
+        self.navigationItem.titleView = titleView;
+    }
+    
+    if (barTintColor)
+    {
+        self.dj_NavigationBarBgTintColor = barTintColor;
+        [self dj_setNeedsUpdateNavigationBarBgTintColor];
+    }
+    
+    //self.dj_NavigationTitleTintColor = [UIColor whiteColor];
+    //self.dj_NavigationItemTintColor = [UIColor whiteColor];
+    [self dj_setNeedsUpdateNavigationTitleTintColor];
+    [self dj_setNeedsUpdateNavigationItemTintColor];
+    
+    // 设置左按键
+    UIBarButtonItem *lButtonItem = [self makeBarButton:lTitle image:lImage toucheEvent:lSelector buttonEdgeInsetsStyle:DJButtonEdgeInsetsStyleImageLeft imageTitleGap:2.0f];
+    self.navigationItem.leftBarButtonItem = lButtonItem;
+    
+    // 设置右Items
+    if ([rarray isNotEmpty])
+    {
+        NSArray *btnArray = [self makeButtonItemsWithDicArray:rarray];
+        self.navigationItem.rightBarButtonItems = btnArray;
+    }
+}
+
 - (void)dj_setNavigationWithTitle:(NSString *)title barTintColor:(UIColor *)barTintColor leftDicArray:(NSArray *)larray rightDicArray:(NSArray *)rarray
 {
     [self dj_setNavigationBarTitle:title];
@@ -419,56 +471,18 @@
     [self dj_setNeedsUpdateNavigationTitleTintColor];
     [self dj_setNeedsUpdateNavigationItemTintColor];
     
-    // 设置左Item
+    // 设置左Items
     if ([larray isNotEmpty])
     {
-        NSMutableArray *btnArray = [[NSMutableArray alloc] initWithCapacity:0];
-        for (NSDictionary *dic in larray)
-        {
-            NSString *title = [dic DJStringForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
-            NSString *imageName = [dic DJStringForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
-            SEL aSelector = NSSelectorFromString([dic DJStringForKey:DJNAVIGATION_BTNITEM_SELECTOR_KEY]);
-            DJButtonEdgeInsetsStyle edgeInsetsStyle = [dic uintForKey:DJNAVIGATION_BTNITEM_EDGESTYLE_KEY withDefault:DJButtonEdgeInsetsStyleImageLeft];
-            CGFloat gap = [dic uintForKey:DJNAVIGATION_BTNITEM_GAP_KEY withDefault:2];
-            
-            UIBarButtonItem *buttonItem = [self makeBarButton:title image:imageName toucheEvent:aSelector buttonEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap];
-            [btnArray addObject:buttonItem];
-        }
-        
-        if (btnArray.count)
-        {
-            self.navigationItem.leftBarButtonItems = btnArray;
-        }
-        else
-        {
-            self.navigationItem.leftBarButtonItems = nil;
-        }
+        NSArray *btnArray = [self makeButtonItemsWithDicArray:larray];
+        self.navigationItem.leftBarButtonItems = btnArray;
     }
-    
-    // 设置左Item
+
+    // 设置右Items
     if ([rarray isNotEmpty])
     {
-        NSMutableArray *btnArray = [[NSMutableArray alloc] initWithCapacity:0];
-        for (NSDictionary *dic in rarray)
-        {
-            NSString *title = [dic objectForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
-            NSString *imageName = [dic objectForKey:DJNAVIGATION_BTNITEM_TITLE_KEY];
-            SEL aSelector = NSSelectorFromString([dic objectForKey:DJNAVIGATION_BTNITEM_SELECTOR_KEY]);
-            DJButtonEdgeInsetsStyle edgeInsetsStyle = [dic uintForKey:DJNAVIGATION_BTNITEM_EDGESTYLE_KEY withDefault:DJButtonEdgeInsetsStyleImageRight];
-            CGFloat gap = [dic uintForKey:DJNAVIGATION_BTNITEM_GAP_KEY withDefault:2];
-
-            UIBarButtonItem *buttonItem = [self makeBarButton:title image:imageName toucheEvent:aSelector buttonEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap];
-            [btnArray addObject:buttonItem];
-        }
-        
-        if (btnArray.count)
-        {
-            self.navigationItem.rightBarButtonItems = btnArray;
-        }
-        else
-        {
-            self.navigationItem.rightBarButtonItems = nil;
-        }
+        NSArray *btnArray = [self makeButtonItemsWithDicArray:rarray];
+        self.navigationItem.rightBarButtonItems = btnArray;
     }
 }
 
@@ -508,6 +522,32 @@
         
         return nil;
     }
+}
+
+- (void)dj_setNavigationLeftItemTintColor:(UIColor *)tintColor
+{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.leftBarButtonItems)
+    {
+        UIButton *btn = (UIButton *)buttonItem.customView;
+        
+        btn.tintColor = tintColor;
+    }
+}
+
+- (void)dj_setNavigationRightItemTintColor:(UIColor *)tintColor
+{
+    for (UIBarButtonItem *buttonItem in self.navigationItem.rightBarButtonItems)
+    {
+        UIButton *btn = (UIButton *)buttonItem.customView;
+        
+        btn.tintColor = tintColor;
+    }
+}
+
+- (void)dj_setNeedsUpdateNavigationItemTintColor
+{
+    [self dj_setNavigationLeftItemTintColor:self.dj_NavigationItemTintColor];
+    [self dj_setNavigationRightItemTintColor:self.dj_NavigationItemTintColor];
 }
 
 - (void)dj_setNavigationLeftItemEnable:(BOOL)enable

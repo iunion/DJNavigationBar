@@ -41,13 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *dj_NavigationItemTintColor;
 
 
-- (void)dj_setNeedsUpdateNavigationTintColor;
+- (void)dj_setNeedsUpdateNavigationBarTintColor;
 
 // NavigationTitle
 - (void)dj_setNeedsUpdateNavigationTitleAlpha;
 - (void)dj_setNeedsUpdateNavigationTitleTintColor;
 
 - (DJNavigationTitleLabel *)dj_getNavigationBarTitleLabel;
+- (nullable DJNavigationTitleLabel *)dj_getNavigationBarTitleLabelAndCreate:(BOOL)createNew;
 - (void)dj_setNavigationBarTitle:(nullable NSString *)title;
 
 // NavigationItem
@@ -56,6 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)dj_setNavigationWithTitle:(nullable NSString *)title barTintColor:(nullable UIColor *)barTintColor leftItemTitle:(nullable NSString *)lTitle leftItemImage:(nullable id)lImage leftToucheEvent:(nullable SEL)lSelector rightItemTitle:(nullable NSString *)rTitle rightItemImage:(nullable id)rImage rightToucheEvent:(nullable SEL)rSelector;
 - (void)dj_setNavigationWithTitleView:(nullable UIView *)titleView barTintColor:(nullable UIColor *)barTintColor leftItemTitle:(nullable NSString *)lTitle leftItemImage:(nullable id)lImage leftToucheEvent:(nullable SEL)lSelector rightItemTitle:(nullable NSString *)rTitle rightItemImage:(nullable id)rImage rightToucheEvent:(nullable SEL)rSelector;
+
+- (void)dj_setNavigationWithTitle:(nullable NSString *)title barTintColor:(nullable UIColor *)barTintColor leftItemTitle:(nullable NSString *)lTitle leftItemImage:(nullable id)lImage leftToucheEvent:(nullable SEL)lSelector rightDicArray:(nullable NSArray *)rarray;
+- (void)dj_setNavigationWithTitleView:(nullable UIView *)titleView barTintColor:(nullable UIColor *)barTintColor leftItemTitle:(nullable NSString *)lTitle leftItemImage:(nullable id)lImage leftToucheEvent:(nullable SEL)lSelector rightDicArray:(nullable NSArray *)rarray;
 
 - (void)dj_setNavigationWithTitle:(nullable NSString *)title barTintColor:(nullable UIColor *)barTintColor leftDicArray:(nullable NSArray *)larray rightDicArray:(nullable NSArray *)rarray;
 - (void)dj_setNavigationWithTitleView:(nullable UIView *)titleView barTintColor:(nullable UIColor *)barTintColor leftDicArray:(nullable NSArray *)larray rightDicArray:(nullable NSArray *)rarray;

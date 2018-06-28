@@ -215,7 +215,7 @@
     if (self.navigationController && [self.navigationController isKindOfClass:[DJNavigationController class]])
     {
         DJNavigationController *nav = (DJNavigationController *)self.navigationController;
-        [nav updateNavigationBarEffectForViewController:self];
+        [nav updateNavigationBarImageForViewController:self];
     }
 }
 
