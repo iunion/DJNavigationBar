@@ -191,13 +191,13 @@
 
 - (void)dj_setNeedsUpdateNavigationTitleAlpha
 {
-    DJNavigationTitleLabel *titleLabel = [self dj_getNavigationBarTitleLabel];
+    DJNavigationTitleLabel *titleLabel = [self dj_getNavigationBarTitleLabelAndCreate:NO];
     titleLabel.alpha = self.dj_NavigationTitleAlpha;
 }
 
 - (void)dj_setNeedsUpdateNavigationTitleTintColor
 {
-    DJNavigationTitleLabel *titleLabel = [self dj_getNavigationBarTitleLabel];
+    DJNavigationTitleLabel *titleLabel = [self dj_getNavigationBarTitleLabelAndCreate:NO];
     titleLabel.textColor = self.dj_NavigationTitleTintColor;
 }
 
@@ -544,10 +544,15 @@
     }
 }
 
+- (void)dj_setNavigationItemTintColor:(UIColor *)tintColor
+{
+    [self dj_setNavigationLeftItemTintColor:tintColor];
+    [self dj_setNavigationRightItemTintColor:tintColor];
+}
+
 - (void)dj_setNeedsUpdateNavigationItemTintColor
 {
-    [self dj_setNavigationLeftItemTintColor:self.dj_NavigationItemTintColor];
-    [self dj_setNavigationRightItemTintColor:self.dj_NavigationItemTintColor];
+    [self dj_setNavigationItemTintColor:self.dj_NavigationItemTintColor];
 }
 
 - (void)dj_setNavigationLeftItemEnable:(BOOL)enable

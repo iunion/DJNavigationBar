@@ -69,6 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)dj_setNavigationLeftItemTintColor:(UIColor *)tintColor;
 - (void)dj_setNavigationRightItemTintColor:(UIColor *)tintColor;
+- (void)dj_setNavigationItemTintColor:(UIColor *)tintColor;
 
 - (void)dj_setNavigationLeftItemEnable:(BOOL)enable;
 - (void)dj_setNavigationRightItemEnable:(BOOL)enable;

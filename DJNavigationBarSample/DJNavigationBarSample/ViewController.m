@@ -65,6 +65,7 @@
     else
     {
         self.title = @"DJNavigationBar";
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_setup_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(rightClick)];
     }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 1000);
@@ -135,11 +136,11 @@
     self.dj_NavigationBarAlpha = sender.value;
     [self dj_setNeedsUpdateNavigationBarAlpha];
     
-    self.dj_NavigationTitleTintColor = [UIColor redColor];
+    self.dj_NavigationTitleTintColor = [UIColor yellowColor];
     self.dj_NavigationTitleAlpha = sender.value;
     [self dj_setNeedsUpdateNavigationTitleAlpha];
     [self dj_setNeedsUpdateNavigationTitleTintColor];
-    
+
     self.dj_NavigationItemTintColor = [UIColor redColor];
     [self dj_setNeedsUpdateNavigationItemTintColor];
 }
